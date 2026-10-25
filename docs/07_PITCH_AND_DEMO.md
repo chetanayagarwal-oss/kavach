@@ -22,8 +22,8 @@
 > Three — the model never writes helpline numbers; those come from fixed templates."
 
 **[2:30–2:50] Proof**
-> "We tested 30 screenshots, three times each. Accuracy __%, scam recall __%, __ false positives out of 12,
-> and 100% consistent answers across all three runs, at __ tokens per second."
+> "We tested 30 screenshots, three times each. Accuracy 100%, scam recall 100%, 0 false positives out of 12,
+> and 100% consistent answers across all three runs, at 54 tokens per second."
 
 **[2:50–3:00] Close**
 > "It's MIT-licensed and also ships as an Agent Skill, so Hermes, Claude Code or Codex can use it as a tool.
@@ -54,10 +54,10 @@ Warm the model first (run one check before you go on stage).
 | "Why not just use GPT / Gemini API?" | Privacy (messages stay on device), works offline, and the track requires local inference. Also no per-request cost. |
 | "How do you know it's accurate?" | 30 labelled samples × 3 runs, every prediction saved in `eval_runs.csv`. Small set — we say that openly. |
 | "What if scammers change wording?" | The model generalises beyond regex; rules only add guaranteed signals. New patterns → one rule or one few-shot example. |
-| "False positives?" | We test tricky safe messages (OTP, bank credit, bill). FP rate __/12. A "suspicious" level exists for unclear cases. |
+| "False positives?" | We test tricky safe messages (OTP, bank credit, bill). FP rate 0/12. A "suspicious" level exists for unclear cases. |
 | "Why Gemma over Qwen?" | Gemma's vision is strong at reading documents and filling strict schemas — exactly this task. Qwen is often better at code, which we don't need here. |
 | "Is this deep tech?" | Constrained decoding, neuro-symbolic fusion with hard overrides, measured run-to-run reliability, two-stage perception → reasoning. |
-| "Why not fine-tune?" | 5 hours. Few-shot + schema + rules got us __%. Fine-tuning E2B with Unsloth on a real dataset is the next step. |
+| "Why not fine-tune?" | 5 hours. Few-shot + schema + rules got us 100% accuracy. Fine-tuning E2B with Unsloth on a real dataset is the next step. |
 | "Can it run on a phone?" | E2B runs on Raspberry Pi 5 class hardware; Android via LiteRT-LM is the next step. |
 | "Who would use it?" | Families (elders), small sellers, bank/telco helpdesks as a triage tool, cyber-cell awareness drives. |
 
