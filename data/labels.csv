@@ -1,0 +1,31 @@
+file,label,scam_type,text
+samples/s01.png,scam,digital_arrest,"This is Inspector Sharma, Mumbai Cyber Cell. A parcel in your name has drugs. FIR registered. Stay on this video call, do not tell family, else arrest warrant today."
+samples/s02.png,scam,kyc_update,Dear customer your SBI account will be blocked today. Update PAN immediately: http://sbi-kyc-verify.top/login
+samples/s03.png,scam,upi_collect_request,"refund.desk@okfake has requested Rs 4,999. Approve the request and enter UPI PIN to receive your cashback of Rs 4,999."
+samples/s04.png,scam,otp_or_pin_request,Hello sir I am calling from bank. For card upgrade please share the OTP you received just now. Urgent.
+samples/s05.png,scam,electricity_bill,Dear consumer your electricity power will be disconnected tonight at 9:30 pm because previous month bill was not updated. Call electricity officer 9000033333.
+samples/s06.png,scam,job_task_scam,"Part time job! Earn Rs 3000 daily from home. Just like YouTube videos and rate hotels. Join Telegram task group, first prepaid task Rs 500."
+samples/s07.png,scam,investment_trading,Join our VIP group for guaranteed returns. 5% daily profit on trading tips. Paisa double in 20 days. Deposit to invest.vip@okaxisfake
+samples/s08.png,scam,lottery_prize,"Congratulations! You won Rs 25 lakh in KBC lucky draw. Pay Rs 12,500 GST to claim prize money. Contact manager 9000044444."
+samples/s09.png,scam,parcel_customs,Your parcel is held at warehouse due to address incomplete. Pay redeliver fee Rs 25 within 24 hrs: https://bit.ly/ip-redel
+samples/s10.png,scam,family_impersonation,"Mummy ye mera naya number hai. Phone gir gaya. Emergency hai, abhi 15000 bhej do is UPI pe rahul.help@okfake, baad me batata hu."
+samples/s11.png,scam,remote_access,Your KYC is pending. Download AnyDesk and share the code with our executive to complete verification today.
+samples/s12.png,scam,fake_payment_screenshot,"Payment successful Rs 20,000 sent. Sorry I sent extra by mistake, please return the extra Rs 10,000 to my UPI, check your account later."
+samples/s13.png,scam,loan_app,"Pre-approved instant loan of Rs 2,00,000 without documents! Pay processing fee Rs 1,999 now to get money in 10 mins."
+samples/s14.png,scam,kyc_update,Your Netbanking access is suspended. Re-verify your account: www.hdfc-secure-login.xyz/verify
+samples/s15.png,scam,digital_arrest,Aapke number se illegal ads chal rahe hain. TRAI aapka SIM 2 ghante me block karega. CBI officer se baat karne ke liye 9 dabaye. Kisi ko mat batana.
+samples/s16.png,scam,phishing_link,"Your reward points Rs 7,850 expire today! Redeem now by installing app: http://redeem-points.click/app.apk"
+samples/s17.png,scam,parcel_customs,"International parcel from UK containing gifts and foreign currency is seized at customs. Pay customs duty Rs 35,000 to release."
+samples/s18.png,scam,upi_collect_request,"Scan this QR code to receive Rs 2,000 Diwali bonus from company. Enter PIN after scanning to get money."
+samples/g01.png,safe,not_scam,482913 is your OTP for login to HDFC Bank NetBanking. Valid for 5 mins. Do not share it with anyone.
+samples/g02.png,safe,not_scam,"Your a/c XX1234 is credited by Rs 15,000.00 on 24-10-26 by UPI ref 6612. Avl bal Rs 42,310."
+samples/g03.png,safe,not_scam,Your package with Boat headphones will be delivered today by 9 pm. Track: amazon.in/your-orders
+samples/g04.png,safe,not_scam,"Bhai kal 10 baje LNMIIT gate pe milte hain, hackathon ke liye laptop charger le aana."
+samples/g05.png,safe,not_scam,"Beta khana kha liya? Aaj papa jaldi aa jayenge, shaam ko call karna."
+samples/g06.png,safe,not_scam,Recharge of Rs 349 successful for your Jio number. Plan valid till 24 Nov 2026. Thank you.
+samples/g07.png,safe,not_scam,Your order from Rajasthani Thali is out for delivery. Delivery partner Suresh will reach in 15 mins.
+samples/g08.png,safe,not_scam,PNR 4521367890 Train 12956 JP-MMCT dated 28-10 CHART PREPARED. Coach B2 Berth 34. Happy journey.
+samples/g09.png,safe,not_scam,Reminder: Mid-semester exam timetable is uploaded on the student portal. Contact the academic office for queries.
+samples/g10.png,safe,not_scam,"Your electricity bill of Rs 1,240 for Oct is generated. Due date 05-11-2026. Pay via official app or bill desk."
+samples/g11.png,safe,not_scam,You received Rs 500 from Ankit Verma. Money added to your bank account ending 1234.
+samples/g12.png,safe,not_scam,"Your appointment with Dr. Mehta is confirmed for Mon 27 Oct, 11:00 AM. Reply C to cancel."
