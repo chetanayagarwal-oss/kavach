@@ -1,4 +1,5 @@
 # 🛡️ Kavach — offline scam-screenshot checker
+**LIVE DEMO LINK** https://drive.google.com/file/d/1EkKLipdhOet6WXdShFC-iVDH4NeMsjj4/view?usp=sharing
 
 > **Screenshot daalo, sach jaano.** Drop in a screenshot of an SMS, WhatsApp message or UPI request.
 > Kavach tells you if it is a scam, why, and what to do next, in English and Hindi.
