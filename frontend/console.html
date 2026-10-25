@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kavach Security Operations Console — Live Threat Forensics</title>
+  <meta name="description" content="Kavach Security Operations Console: Real-time offline AI threat analysis for Indian cyber-fraud screenshots using Gemma 4.">
+  <link rel="stylesheet" href="/static/css/theme.css">
+  <link rel="stylesheet" href="/static/css/console.css">
+  <link rel="icon" type="image/jpeg" href="/static/assets/shield.jpg">
+</head>
+<body class="console-body">
+
+  <!-- Console Header -->
+  <header class="console-header">
+    <div class="console-header-inner">
+      <div class="console-brand-group">
+        <a href="/" class="back-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          <span>Overview</span>
+        </a>
+
+        <div class="brand-icon" style="width:32px;height:32px;">
+          <img src="/static/assets/shield.jpg" alt="Kavach">
+        </div>
+
+        <div class="console-title-wrap">
+          <span class="console-title">KAVACH SEC-OPS</span>
+          <span class="console-tag">CONSOLE v1.0</span>
+        </div>
+      </div>
+
+      <div class="console-controls">
+        <div id="modelChip" class="model-chip">
+          <span class="status-dot"></span>
+          <span>CHECKING MODEL...</span>
+        </div>
+
+        <button id="arenaBtn" class="arena-btn" title="Open 30-Sample Evaluation Suite">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="20" x2="18" y2="10"></line>
+            <line x1="12" y1="20" x2="12" y2="4"></line>
+            <line x1="6" y1="20" x2="6" y2="14"></line>
+          </svg>
+          <span>Test Suite (30)</span>
+        </button>
+
+        <!-- Audio Toggle -->
+        <button id="audioBtn" class="audio-toggle-btn active" title="Toggle Audio Sound FX">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          </svg>
+        </button>
+
+        <!-- Language Selector -->
+        <div class="lang-switch">
+          <button class="lang-btn active" data-lang="en">EN</button>
+          <button class="lang-btn" data-lang="hi">हिन्दी</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Console Layout -->
+  <main class="console-main">
+
+    <!-- Left Column: Ingestion & Samples -->
+    <div class="ingest-pane">
+      <div class="panel-card">
+        <div class="panel-header">
+          <div class="panel-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="17 8 12 3 7 8"></polyline>
+              <line x1="12" y1="3" x2="12" y2="15"></line>
+            </svg>
+            <span>Screenshot Ingestion</span>
+          </div>
+          <span class="dropzone-badge">Ctrl+V to Paste</span>
+        </div>
+
+        <!-- Dropzone -->
+        <div id="dropzone" class="dropzone">
+          <input type="file" id="fileInput" accept="image/png, image/jpeg, image/webp">
+          
+          <div class="dropzone-prompt">
+            <div class="upload-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                <polyline points="21 15 16 10 5 21"></polyline>
+              </svg>
+            </div>
+            <div class="dropzone-text">Drop Screenshot Here</div>
+            <div class="dropzone-sub">or click to browse from device (SMS / WhatsApp / UPI)</div>
+          </div>
+
+          <!-- Preview Wrap with Animated Laser Beam -->
+          <div id="previewWrap" class="image-preview-wrap">
+            <button id="clearImgBtn" class="btn-clear-img" title="Remove screenshot">✕</button>
+            <div class="scanner-laser"></div>
+            <img id="previewImg" src="" alt="Screenshot Preview">
+          </div>
+        </div>
+
+        <!-- Text Message Input Area -->
+        <div class="text-input-wrap">
+          <label for="msgTextarea">...Or Paste Message Text</label>
+          <textarea id="msgTextarea" class="console-textarea" placeholder="Paste suspicious SMS, WhatsApp message, or UPI collect request text here..."></textarea>
+        </div>
+
+        <!-- Analyze CTA -->
+        <button id="btnAnalyze" class="btn-analyze">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+          </svg>
+          <span>SCAN FOR THREATS / खतरे की जाँच करें</span>
+        </button>
+      </div>
+
+      <!-- Presets & Sample Test Library -->
+      <div class="panel-card samples-card">
+        <div class="panel-header">
+          <div class="panel-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2">
+              <rect x="3" y="3" width="7" height="7"></rect>
+              <rect x="14" y="3" width="7" height="7"></rect>
+              <rect x="14" y="14" width="7" height="7"></rect>
+              <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+            <span>Preset Threat Scenarios</span>
+          </div>
+          <span style="font-size:0.75rem;color:var(--text-muted);">1-Click Test</span>
+        </div>
+
+        <div class="sample-tabs">
+          <button class="sample-tab active" data-filter="all">All</button>
+          <button class="sample-tab" data-filter="scam">Scams (🚨)</button>
+          <button class="sample-tab" data-filter="safe">Safe (✅)</button>
+        </div>
+
+        <div id="sampleList" class="sample-list">
+          <div style="color:var(--text-muted);font-size:0.8rem;padding:8px;">Loading test scenarios...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Threat Analysis & Forensics Deck -->
+    <div class="analysis-pane">
+
+      <!-- State 1: Idle Screen -->
+      <div id="idleState" class="idle-state">
+        <div class="idle-radar-wrap">
+          <div class="idle-radar-circle"></div>
+          <div class="idle-radar-circle"></div>
+          <div class="idle-radar-sweep"></div>
+          <div class="idle-shield-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+        </div>
+        <h3 class="idle-title">Ready for Threat Ingestion</h3>
+        <p class="idle-sub">
+          Upload a screenshot or pick a preset scenario on the left. Kavach will extract tokens, apply deterministic rules, and fuse Gemma 4 analysis in real-time.
+        </p>
+      </div>
+
+      <!-- State 2: Progress Screen (Active Step Pipeline Animation) -->
+      <div id="progressWrap" class="pipeline-progress-wrap">
+        <div class="progress-header">
+          <div class="progress-title">
+            <span class="status-dot"></span>
+            <span>Running Offline Defense Pipeline</span>
+          </div>
+          <span style="font-family:var(--font-mono);font-size:0.8rem;color:#38bdf8;">gemma4:e4b on local silicon</span>
+        </div>
+
+        <div class="progress-steps-list">
+          <div id="step1" class="progress-step-item pending">
+            <div class="step-indicator">○</div>
+            <div class="step-meta">
+              <h5>Layer 1: Vision Ingestion & OCR Transcription</h5>
+              <p>Extracting raw message tokens, sender handles, and channels via Gemma 4 Vision.</p>
+            </div>
+          </div>
+
+          <div id="step2" class="progress-step-item pending">
+            <div class="step-indicator">○</div>
+            <div class="step-meta">
+              <h5>Layer 2: Deterministic Rule Matrix & Entity Scan</h5>
+              <p>Regex matching for OTP/PIN asks, UPI collects, fake domains, and digital arrest threats.</p>
+            </div>
+          </div>
+
+          <div id="step3" class="progress-step-item pending">
+            <div class="step-indicator">○</div>
+            <div class="step-meta">
+              <h5>Layer 3: Grammar-Constrained Judgment</h5>
+              <p>Evaluating threat category under strict JSON schema constraints (zero hallucination).</p>
+            </div>
+          </div>
+
+          <div id="step4" class="progress-step-item pending">
+            <div class="step-indicator">○</div>
+            <div class="step-meta">
+              <h5>Layer 4: Mathematical Risk Fusion & Immutable Safety Advice</h5>
+              <p>Fusing rule signals with model confidence and binding National Helpline 1930 templates.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- State 3: Analysis Results Container -->
+      <div id="resultsContainer" class="results-container">
+
+        <!-- Verdict Hero Card -->
+        <div id="verdictCard" class="verdict-hero-card scam">
+          <!-- Circular Animated Gauge -->
+          <div class="risk-gauge-wrap">
+            <svg class="risk-gauge-svg" viewBox="0 0 100 100">
+              <circle class="risk-gauge-bg" cx="50" cy="50" r="40"></circle>
+              <circle id="riskMeter" class="risk-gauge-meter" cx="50" cy="50" r="40"></circle>
+            </svg>
+            <div class="risk-gauge-text">
+              <div id="riskNumber" class="risk-number">0</div>
+              <div class="risk-unit">Risk / 100</div>
+            </div>
+          </div>
+
+          <div class="verdict-info">
+            <div class="verdict-badge-row">
+              <div id="verdictMainBadge" class="verdict-main-badge">🚨 CRITICAL SCAM</div>
+              <span id="scamTypeChip" class="scam-type-chip">Digital Arrest</span>
+            </div>
+            <div id="verdictSubtext" class="verdict-subtext">Critical fraud detected. High financial and identity risk.</div>
+          </div>
+
+          <div class="verdict-meta-stats">
+            <div><strong id="statTokS">54.2 tok/s</strong> decode</div>
+            <div><strong id="statLatency">3.6s</strong> total latency</div>
+            <span class="badge badge-primary" style="margin-top:4px;">100% Offline</span>
+          </div>
+        </div>
+
+        <!-- Immediate Action Directive Banner -->
+        <div class="action-directive-box">
+          <div class="directive-content">
+            <span class="directive-label">IMMEDIATE ACTION REQUIRED / मुख्य निर्देश</span>
+            <span id="directiveText" class="directive-text">🚨 DO NOT PAY · NEVER SHARE OTP OR UPI PIN · CALL 1930 IMMEDIATELY</span>
+          </div>
+          <button id="btnCopyDirective" class="btn-copy-directive">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <span>Copy Directive</span>
+          </button>
+        </div>
+
+        <!-- Multi-Tab Forensics Deck -->
+        <div class="forensics-deck">
+          <nav class="deck-nav">
+            <button class="deck-tab-btn active" data-pane="paneFlags">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path>
+                <line x1="4" y1="22" x2="4" y2="15"></line>
+              </svg>
+              <span>Red Flags Detected</span>
+            </button>
+
+            <button class="deck-tab-btn" data-pane="paneChecklist">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 11l3 3L22 4"></path>
+                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+              </svg>
+              <span>Safety Checklist</span>
+            </button>
+
+            <button class="deck-tab-btn" data-pane="paneReasoning">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              <span>AI Reasoning</span>
+            </button>
+
+            <button class="deck-tab-btn" data-pane="paneEntities">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+              </svg>
+              <span>Extracted Entities</span>
+            </button>
+
+            <button class="deck-tab-btn" data-pane="paneTelemetry">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+              </svg>
+              <span>Hardware Telemetry</span>
+            </button>
+
+            <button class="deck-tab-btn" data-pane="paneJson">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+              <span>Structured JSON</span>
+            </button>
+          </nav>
+
+          <div class="deck-pane-content">
+            <!-- Pane 1: Flags -->
+            <div id="paneFlags" class="deck-pane active">
+              <div id="flagsList" class="flags-list"></div>
+            </div>
+
+            <!-- Pane 2: Checklist -->
+            <div id="paneChecklist" class="deck-pane">
+              <div id="adviceList" class="advice-items-list"></div>
+              <div class="helpline-quick-strip">
+                <div>
+                  <div style="font-weight:700;color:white;font-size:0.95rem;">National Cybercrime Reporting Portal</div>
+                  <div style="font-size:0.8rem;color:var(--text-secondary);">Call 1930 within the Golden Hour to freeze fraudulent money transfers.</div>
+                </div>
+                <a href="tel:1930" class="helpline-call-btn">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                  </svg>
+                  <span>Dial 1930</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Pane 3: AI Reasoning -->
+            <div id="paneReasoning" class="deck-pane">
+              <div style="margin-bottom:16px;">
+                <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:0.82rem;">
+                  <span style="color:var(--text-muted);text-transform:uppercase;font-weight:700;">Model Confidence:</span>
+                  <span id="confidenceVal" style="color:#38bdf8;font-weight:700;">95%</span>
+                </div>
+                <div style="height:6px;background:rgba(255,255,255,0.08);border-radius:3px;overflow:hidden;">
+                  <div id="confidenceBar" style="height:100%;width:95%;background:linear-gradient(90deg, #0284c7, #38bdf8);border-radius:3px;"></div>
+                </div>
+              </div>
+              <div style="background:rgba(10,15,29,0.7);padding:18px;border-radius:var(--radius-sm);border:1px solid var(--border-subtle);font-size:0.92rem;line-height:1.6;color:#e2e8f0;">
+                <div style="font-weight:700;color:#38bdf8;margin-bottom:8px;font-size:0.8rem;text-transform:uppercase;">Gemma 4 Rationalization:</div>
+                <div id="reasoningText">Direct evaluation of linguistic triggers and extracted rule signals.</div>
+              </div>
+            </div>
+
+            <!-- Pane 4: Entities -->
+            <div id="paneEntities" class="deck-pane">
+              <div class="entities-grid">
+                <div class="entity-box">
+                  <h6>Extracted URLs / Links</h6>
+                  <div id="entityUrls" class="entity-tags"></div>
+                </div>
+                <div class="entity-box">
+                  <h6>Extracted UPI IDs (VPA)</h6>
+                  <div id="entityUpi" class="entity-tags"></div>
+                </div>
+                <div class="entity-box">
+                  <h6>Phone Numbers Found</h6>
+                  <div id="entityPhones" class="entity-tags"></div>
+                </div>
+                <div class="entity-box">
+                  <h6>Monetary Amounts Mentioned</h6>
+                  <div id="entityAmounts" class="entity-tags"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pane 5: Telemetry -->
+            <div id="paneTelemetry" class="deck-pane">
+              <div class="telemetry-grid">
+                <div class="telemetry-card">
+                  <div id="telemTokS" class="telemetry-val">54.2</div>
+                  <div class="telemetry-label">Tokens Per Second</div>
+                </div>
+                <div class="telemetry-card">
+                  <div id="telemLatency" class="telemetry-val">3.6s</div>
+                  <div class="telemetry-label">Total Execution Time</div>
+                </div>
+                <div class="telemetry-card">
+                  <div id="telemTokens" class="telemetry-val">184</div>
+                  <div class="telemetry-label">Generated Tokens</div>
+                </div>
+              </div>
+              <div style="padding:14px 18px;background:rgba(10,15,29,0.7);border-radius:var(--radius-sm);border:1px solid var(--border-subtle);font-size:0.85rem;color:var(--text-secondary);display:flex;justify-content:space-between;align-items:center;">
+                <span>Active Model: <code id="telemModel" style="color:#38bdf8;">gemma4:e4b</code></span>
+                <span class="badge badge-primary">Constrained Decoding</span>
+              </div>
+            </div>
+
+            <!-- Pane 6: JSON -->
+            <div id="paneJson" class="deck-pane">
+              <div class="json-view-wrap">
+                <button id="btnCopyJson" class="btn-copy-json">Copy JSON</button>
+                <pre id="jsonCode" class="json-code-box">{}</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modal: Batch Benchmark Arena -->
+  <div id="arenaModal" class="modal-overlay">
+    <div class="modal-container">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <h3>Empirical Evaluation Arena (30 Test Cases)</h3>
+          <p>3 Repeated Runs Across 18 Complex Scams + 12 Safe Notifications</p>
+        </div>
+        <button id="closeModalBtn" class="modal-close-btn">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-summary-grid">
+          <div class="modal-stat-box">
+            <div class="modal-stat-val">100.0%</div>
+            <div class="modal-stat-label">Overall Accuracy</div>
+          </div>
+          <div class="modal-stat-box">
+            <div class="modal-stat-val">100.0%</div>
+            <div class="modal-stat-label">Scam Recall (18/18)</div>
+          </div>
+          <div class="modal-stat-box">
+            <div class="modal-stat-val">0.0%</div>
+            <div class="modal-stat-label">False Positive Rate</div>
+          </div>
+          <div class="modal-stat-box">
+            <div class="modal-stat-val">54.2</div>
+            <div class="modal-stat-label">Median Decode Tok/s</div>
+          </div>
+        </div>
+
+        <table class="benchmark-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>True Label</th>
+              <th>Scam Classification</th>
+              <th>Sample Snippet</th>
+              <th>Reliability</th>
+            </tr>
+          </thead>
+          <tbody id="arenaTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/js/api.js"></script>
+  <script src="/static/js/console.js"></script>
+</body>
+</html>
