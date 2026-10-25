@@ -186,11 +186,18 @@ def r_fake_payment(t: str) -> str:
     return ""
 
 
+def r_prompt_injection(t: str) -> str:
+    # Adversarial attacks attempting to hijack AI decision-making
+    return _find(r"(ignore (all )?(previous |prior |your )?instructions|system override|disregard (all )?(previous |prior )?instructions|"
+                 r"classify this (message )?as safe|output (only )?safe|you are now in developer mode|pretend this is safe)", t)
+
+
 RULES = [
     ("asks_secret", "Asks you to share OTP/PIN/password", "OTP/PIN/पासवर्ड माँग रहा है", 40, True, r_asks_secret),
     ("receive_needs_pin", "Says you must enter PIN / scan QR to RECEIVE money", "पैसे लेने के लिए PIN/QR माँग रहा है", 40, True, r_receive_needs_pin),
     ("digital_arrest", "Police/CBI/court threat with secrecy or video call (digital arrest)", "पुलिस/CBI का डर + वीडियो कॉल (डिजिटल अरेस्ट)", 45, True, r_digital_arrest),
     ("remote_access", "Asks to install a remote-access / screen-share app", "रिमोट-एक्सेस ऐप इंस्टॉल करवा रहा है", 40, True, r_remote_access),
+    ("prompt_injection", "Prompt injection attempt detected", "AI सुरक्षा निर्देशों को बायपास करने की कोशिश (प्रॉम्प्ट इंजेक्शन)", 40, True, r_prompt_injection),
     ("authority_mention", "Mentions police/CBI/customs/court", "पुलिस/CBI/कस्टम्स का नाम", 15, False, r_authority_mention),
     ("urgency", "Urgency or deadline pressure", "जल्दबाज़ी का दबाव", 15, False, r_urgency),
     ("kyc_block", "KYC / account or SIM block threat", "KYC / अकाउंट ब्लॉक की धमकी", 20, False, r_kyc_block),
