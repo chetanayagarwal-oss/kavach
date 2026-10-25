@@ -1,0 +1,46 @@
+{
+  "model": "gemma4:e4b",
+  "hardware": "Windows 11 | AMD64 | Intel64 Family 6 Model 186 Stepping 2, GenuineIntel | 16 GB RAM | GPU: NVIDIA GeForce RTX 4050 Laptop GPU, 6141 MiB",
+  "samples": 30,
+  "runs": 3,
+  "mode": "image (OCR + classify)",
+  "per_run": [
+    {
+      "run": 1,
+      "accuracy": 1.0,
+      "scam_recall": 1.0,
+      "false_positive_rate": 0.0,
+      "type_accuracy": 0.6666666666666666,
+      "tp": 18,
+      "fn": 0,
+      "fp": 0,
+      "tn": 12
+    },
+    {
+      "run": 2,
+      "accuracy": 1.0,
+      "scam_recall": 1.0,
+      "false_positive_rate": 0.0,
+      "type_accuracy": 0.6666666666666666,
+      "tp": 18,
+      "fn": 0,
+      "fp": 0,
+      "tn": 12
+    },
+    {
+      "run": 3,
+      "accuracy": 1.0,
+      "scam_recall": 1.0,
+      "false_positive_rate": 0.0,
+      "type_accuracy": 0.6666666666666666,
+      "tp": 18,
+      "fn": 0,
+      "fp": 0,
+      "tn": 12
+    }
+  ],
+  "consistency_all_runs_same_verdict": 1.0,
+  "median_decode_tok_s": 54.22,
+  "median_latency_s": 3.64,
+  "errors": {}
+}

@@ -3,4 +3,7 @@ __pycache__/
 .venv/
 results/*
 !results/.gitkeep
+!results/*.md
+!results/*.csv
+!results/*.json
 .DS_Store

@@ -48,15 +48,18 @@ Why it is reliable on a small local model:
 
 ## Results (3 repeated runs)
 
-_Run `python eval/eval.py` and paste `results/EVAL_REPORT.md` here._
+Evaluated across 30 samples (18 scam scenarios + 12 safe messages) across 3 consecutive runs:
 
-| Run | Accuracy | Scam recall | False-positive rate | Tok/s |
-|---|---|---|---|---|
-| 1 | | | | |
-| 2 | | | | |
-| 3 | | | | |
+| Run | Accuracy | Scam recall | False-positive rate | Scam-type accuracy | Tok/s |
+|---|---|---|---|---|---|
+| 1 | 100.0% | 100.0% | 0.0% | 66.7% | 53.6 |
+| 2 | 100.0% | 100.0% | 0.0% | 66.7% | 53.9 |
+| 3 | 100.0% | 100.0% | 0.0% | 66.7% | 56.1 |
 
-**Consistency (same verdict in all 3 runs):** ___ %
+- **Consistency (same verdict in all 3 runs):** 100.0% (30/30 samples)
+- **Median decode speed:** 54.2 tokens/sec
+- **Median latency:** 3.6 s per screenshot
+- **Errors:** 0 (Raw results in `results/eval_runs.csv`)
 
 ## Quick start
 

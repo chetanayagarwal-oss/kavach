@@ -89,7 +89,7 @@ def main() -> None:
             rec["correct"] = (flagged(rec["verdict"]) == (rec["label"] == "scam")) and not err
             records.append(rec)
             print(f"run {run} {row['file']:<20} true={row['label']:<5} pred={rec['verdict']:<10} "
-                  f"risk={rec['risk']:<4} {rec['tok_s']} tok/s {'OK' if rec['correct'] else 'XX'}")
+                  f"risk={rec['risk']:<4} {rec['tok_s']} tok/s {'OK' if rec['correct'] else 'XX'}", flush=True)
 
     with (RESULTS / "eval_runs.csv").open("w", newline="", encoding="utf-8") as fh:
         w = csv.DictWriter(fh, fieldnames=list(records[0].keys()))

@@ -1,0 +1,17 @@
+{
+  "venvPath": ".",
+  "venv": ".venv",
+  "pythonVersion": "3.12",
+  "include": [
+    "kavach",
+    "eval",
+    "data"
+  ],
+  "exclude": [
+    "**/__pycache__",
+    "**/*.pyc",
+    ".venv"
+  ],
+  "reportMissingImports": false,
+  "reportMissingModuleSource": false
+}
