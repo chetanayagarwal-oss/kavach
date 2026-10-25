@@ -4,6 +4,7 @@ import os
 
 OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434")
 MODEL = os.getenv("KAVACH_MODEL", "gemma4:e4b")
+DECISION_ENGINE = os.getenv("KAVACH_DECISION_ENGINE", "gemma").lower()  # "gemma" | "jev"
 
 # Determinism: temperature 0 + fixed seed => same input gives the same output.
 TEMPERATURE = float(os.getenv("KAVACH_TEMPERATURE", "0"))

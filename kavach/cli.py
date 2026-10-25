@@ -11,6 +11,8 @@ from .pipeline import OllamaError, check
 
 
 def main() -> int:
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8")
     p = argparse.ArgumentParser(description="Kavach: offline scam-message checker")
     p.add_argument("--image", help="path to a screenshot (png/jpg)")
     p.add_argument("--text", help="message text, if you don't have a screenshot")

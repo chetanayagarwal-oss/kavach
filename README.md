@@ -119,7 +119,8 @@ kavach/
 | [07_PITCH_AND_DEMO.md](docs/07_PITCH_AND_DEMO.md) | 3-minute pitch, demo script, judge Q&A |
 | [08_SUBMISSION_CHECKLIST.md](docs/08_SUBMISSION_CHECKLIST.md) | Per-track requirements, ticked |
 | [09_EDGE_RASPBERRY_PI.md](docs/09_EDGE_RASPBERRY_PI.md) | Optional Physical AI track on a Pi 5 |
-| [DEV_POST.md](docs/DEV_POST.md) | Publication-ready DEV.to / JEV article for Hacktoberfest |
+| [10_TYPESAFE_JEV.md](docs/10_TYPESAFE_JEV.md) | Deep-tech integration with TypeSafe AI jev-1.13.0 System One model |
+| [DEV_POST.md](docs/DEV_POST.md) | Publication-ready DEV.to article for Hacktoberfest |
 
 ## Limits (honest)
 

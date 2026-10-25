@@ -87,6 +87,10 @@ def extract_from_image(image_path: str | Path) -> tuple[dict, dict]:
 
 
 def classify(message_text: str, rule_lines: list[str]) -> tuple[dict, dict]:
+    if config.DECISION_ENGINE == "jev":
+        from .jev import classify_with_jev
+        return classify_with_jev(message_text, rule_lines)
+
     messages = [{"role": "system", "content": CLASSIFY_SYSTEM}, *FEW_SHOT,
                 {"role": "user", "content": classify_user_message(message_text, rule_lines)}]
     out, stats = call_model(messages, CLASSIFY_SCHEMA)
